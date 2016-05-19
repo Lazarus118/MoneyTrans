@@ -35,12 +35,12 @@ app.secret_key = '\xa2\x944\x05\x11\x0b\x98?\xbd\x1a\xc5\xc5\xc4\xb1\xfc;\xe4\x8
 #***********************************************************************#
 @app.route('/sms', methods=['GET', 'POST'])
 def sms():
-    link = url_for("index")
+    link = "http://bit.ly/1TgUFmf"
     resp = twilio.twiml.Response()
     body = request.values.get('Body')
     
     if "Send" in body:
-        resp.message("Great. Visit\n------------" + link + "------------\nto start sending Funds to your Friends & Family.")
+        resp.message("Great! Visit link:\n-------------------\n " + link + "\n-------------------\nto start sending Funds \ndirectly to your FRIENDS & FAMILY.")
     elif "Receive" in body:
         resp.message("You'd prefer to **{0}**,\nnot a prob... \nPlease await further instructions.".format(body))           
     else:
