@@ -3,14 +3,17 @@
   <form action="/charge" method="post">
     <article>
       <label>
-        <span>I would like to SEND US $5.00</span>
+        <span style="font-size: 50px;position: absolute;top: 30%;">I would like to SEND US $5.00</span>
       </label>
     </article>
 
+    <div class="button" style="position:absolute;top:40%;margin-left: 30%;">
     <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
             data-key="{{ key }}"
             data-description="MoneyTrans demo"
             data-amount="500"
-            data-locale="auto"></script>
+            data-locale="auto">
+    </script>
+  </div>
   </form>
 {% endblock %}
