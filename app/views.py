@@ -51,7 +51,7 @@ def sms():
 
 
     else:
-        resp.message("<<< BHyv >>>\nYou said: **{0}**, \nwith just 2 simple steps you can Send or Receive funds from FRIENDS and FAMILY.\nTry by:\nSending " + amount +"  to  "+ number +"  or\nReceiving  " + amount +"  from  " + number +.format(body))
+        resp.message("<<< BHyv >>>\nYou said: **{0}**, \nwith just 2 simple steps you can Send or Receive funds from FRIENDS and FAMILY.\nTry by:\nSending " + amount +"  to  "+ number +"  or\nReceiving  " + amount +"  from  " + number + ".".format(body))
     
     return str(resp)
 
