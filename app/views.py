@@ -35,16 +35,23 @@ app.secret_key = '\xa2\x944\x05\x11\x0b\x98?\xbd\x1a\xc5\xc5\xc4\xb1\xfc;\xe4\x8
 #***********************************************************************#
 @app.route('/sms', methods=['GET', 'POST'])
 def sms():
+    amount = "eg. $5.00"
+    number = "eg. 767-555-5555"
     link = "http://bit.ly/1TgUFmf"
     resp = twilio.twiml.Response()
     body = request.values.get('Body')
     
-    if "Send" in body:
-        resp.message("Great! Visit link:\n-------------------\n " + link + "\n-------------------\nto start sending Funds \ndirectly to your FRIENDS & FAMILY.")
-    elif "Receive" in body:
-        resp.message("You'd prefer to **{0}**,\nnot a prob... \nPlease await further instructions.".format(body))           
+    if "Sending **" + amount +"** to **"+ number +"**" in body:
+        resp.message("You've just sent \n** " + amount +" ** to ** "+ number +" **, \nThank you for using BHyv Money Transfer \n'A simplier, easier way to move funds'\n\n....Full App coming soon....")
+        message = client.messages.create(to=number, from_="+12242314065", 
+        body="You've just received \n** " + amount +" ** from ** "+ number +" **, \nThank you for using BHyv Money Transfer \n'A simplier, easier way to move funds'\n\n....Full App coming soon....")
+
+    elif "Receiving ** " + amount +" ** from ** " + number +" **" in body:
+        resp.message("You've just received \n** " + amount +" ** from ** "+ number +" **, \nThank you for using BHyv Money Transfer \n'A simplier, easier way to move funds'\n\n....Full App coming soon....")
+        
+                   
     else:
-        resp.message("You said: **{0}**, to start a transaction.\nReply Send or Receive".format(body))
+        resp.message("<<< BHyv Money Transfer >>>\nYou said: **{0}**, \nwith just 2 simple steps you can Send or Receive funds from FRIENDS and FAMILY.\nTry by:\nSending ** " + amount +" ** to ** "+ number +" ** or\nReceiving ** " + amount +" ** from ** " + number +" **".format(body))
     
     return str(resp)
 
