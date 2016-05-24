@@ -35,8 +35,8 @@ app.secret_key = '\xa2\x944\x05\x11\x0b\x98?\xbd\x1a\xc5\xc5\xc4\xb1\xfc;\xe4\x8
 #***********************************************************************#
 @app.route('/sms', methods=['GET', 'POST'])
 def sms():
-    amount = "eg. $5.00"
-    number = "eg. 767-555-5555"
+    amount = ""
+    number = ""
     link = "http://bit.ly/1TgUFmf"
     resp = twilio.twiml.Response()
     body = request.values.get('Body')
@@ -51,7 +51,7 @@ def sms():
 
 
     else:
-        resp.message("<<< BHyv >>>\nYou said: **{0}**, \nwith just 2 simple steps you can Send or Receive funds from FRIENDS and FAMILY.\nTry by:\nSending " + amount +"  to  "+ number +"  or\nReceiving  " + amount +"  from  " + number.format(body))
+        resp.message("<<< BHyv >>>\nYou said: **{0}**, \nwith just 2 simple steps you can Send or Receive funds from FRIENDS and FAMILY.\nTry by:\nSending " + amount +"  to  "+ number +"  or\nReceiving  " + amount +"  from  " + number +.format(body))
     
     return str(resp)
 
