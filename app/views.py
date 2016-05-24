@@ -41,17 +41,17 @@ def sms():
     resp = twilio.twiml.Response()
     body = request.values.get('Body')
     
-    if "Sending **" + amount +"** to **"+ number +"**" in body:
-        resp.message("You've just sent \n** " + amount +" ** to ** "+ number +" **, \nThank you for using BHyv Money Transfer \n'A simplier, easier way to move funds'\n\n....Full App coming soon....")
+    if "Sending " + amount +" to "+ number in body:
+        resp.message("You've just sent \n " + amount +"  to  "+ number +", \nThank you for using BHyv Money Transfer \n'A simplier, easier way to move funds'\n\n....Full App coming soon....")
         message = client.messages.create(to=number, from_="+12242314065", 
-        body="You've just received \n** " + amount +" ** from ** "+ number +" **, \nThank you for using BHyv Money Transfer \n'A simplier, easier way to move funds'\n\n....Full App coming soon....")
+        body="You've just received \n " + amount +"  from  "+ number +", \nThank you for using BHyv Money Transfer \n'A simplier, easier way to move funds'\n\n....Full App coming soon....")
 
-    elif "Receiving ** " + amount +" ** from ** " + number +" **" in body:
-        resp.message("You've just received \n** " + amount +" ** from ** "+ number +" **, \nThank you for using BHyv Money Transfer \n'A simplier, easier way to move funds'\n\n....Full App coming soon....")
-        
-                   
+    elif "Receiving  " + amount +"  from  " + number in body:
+        resp.message("You've just received \n " + amount +"  from  "+ number +", \nThank you for using BHyv Money Transfer \n'A simplier, easier way to move funds'\n\n....Full App coming soon....")
+
+
     else:
-        resp.message("<<< BHyv Money Transfer >>>\nYou said: **{0}**, \nwith just 2 simple steps you can Send or Receive funds from FRIENDS and FAMILY.\nTry by:\nSending ** " + amount +" ** to ** "+ number +" ** or\nReceiving ** " + amount +" ** from ** " + number +" **".format(body))
+        resp.message("<<< BHyv >>>\nYou said: **{0}**, \nwith just 2 simple steps you can Send or Receive funds from FRIENDS and FAMILY.\nTry by:\nSending " + amount +"  to  "+ number +"  or\nReceiving  " + amount +"  from  " + number.format(body))
     
     return str(resp)
 
